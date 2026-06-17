@@ -36,6 +36,8 @@ public class Main {
             System.out.println("Error: " + error.getMessage());
         }
 
-        sale02.calculateTotal();
+        Sale sale03 = new Sale();
+
+        sale03.calculateTotal();
     }
 }
