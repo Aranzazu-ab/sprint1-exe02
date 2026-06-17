@@ -16,22 +16,22 @@ public class Main {
         sale01.getProducts().add(product04);
 
         try {
+            System.out.println(sale01.getProducts().get(5));
+        } catch (IndexOutOfBoundsException error){
+            System.out.println("Error: " + error.getMessage());
+        }
+
+        try {
             sale01.calculateTotal();
             System.out.println("Total: " +sale01.getTotalPrice() + " euros.");
         } catch (EmptySaleException error) {
             System.out.println("Error: " + error.getMessage());
         }
 
-        try {
-            System.out.println(sale01.getProducts().get(5));
-        } catch (IndexOutOfBoundsException error){
-            System.out.println("Error: " + error.getMessage());
-        }
-
         Sale sale02 = new Sale();
         try {
             sale02.calculateTotal();
-            System.out.println("Total: " +sale01.getTotalPrice() + " euros.");
+            System.out.println("Total: " +sale02.getTotalPrice() + " euros.");
         } catch (EmptySaleException error) {
             System.out.println("Error: " + error.getMessage());
         }
