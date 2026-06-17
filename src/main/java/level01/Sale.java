@@ -2,7 +2,7 @@ package level01;
 
 import java.util.ArrayList;
 
-<public class Sale {
+public class Sale {
     private ArrayList<Product> products;
     private double totalPrice;
 
@@ -13,6 +13,10 @@ import java.util.ArrayList;
 
     public ArrayList<Product> getProducts() {
         return products;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
     public void calculateTotal() throws EmptySaleException {
