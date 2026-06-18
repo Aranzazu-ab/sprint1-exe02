@@ -37,6 +37,7 @@ public class ConsoleReader {
             try {
                 System.out.println(message);
                 float value = scan.nextFloat();
+                scan.nextLine();
                 return value;
             } catch (InputMismatchException error) {
                 System.out.println("Format error. Try again.");
@@ -50,6 +51,7 @@ public class ConsoleReader {
             try {
                 System.out.println(message);
                 double value = scan.nextDouble();
+                scan.nextLine();
                 return value;
             } catch (InputMismatchException error) {
                 System.out.println("Format error. Try again.");
@@ -82,7 +84,7 @@ public class ConsoleReader {
                 if (value.length() > 10) {
                     throw new TooLongException();
                 } else {
-                    return;
+                    return value;
                 }
             } catch (TooLongException error) {
                 System.out.println(error.getMessage());
