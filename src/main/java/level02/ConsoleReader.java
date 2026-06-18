@@ -11,6 +11,7 @@ public class ConsoleReader {
             try {
                 System.out.println(message);
                 byte value = scan.nextByte();
+                scan.nextLine();
                 return value;
             } catch (InputMismatchException error) {
                 System.out.println("Format error. Try again.");
@@ -24,6 +25,7 @@ public class ConsoleReader {
             try {
                 System.out.println(message);
                 int value = scan.nextInt();
+                scan.nextLine();
                 return value;
             } catch (InputMismatchException error) {
                 System.out.println("Format error. Try again.");

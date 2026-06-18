@@ -1,8 +1,8 @@
-## LEVEL 1 EXCEPTIONS
+# LEVEL 1 EXCEPTIONS
 This Java application simulates a basic sales system. The goal is to create and use a custom exception and understand 
 the difference between checked and unchecked exceptions. 
 
-### STRUCTURE
+## STRUCTURE
 ```text
 level01/
 ├── Main.java
@@ -27,7 +27,7 @@ Creates products, create a sale, add the products to it, and contains test cases
 test different exception scenarios.
 It handles `IndexOutBoundsException` and uses `EmptySaleException`.
 
-### TESTING
+## TESTING
 First a `sale01` object is created and the products are added to the list.
 Second, an attempt is made to access an invalid list position: 
 System.out.println(sale01.getProducts().get(5));
@@ -52,7 +52,7 @@ EmptySaleException is then modified to extend RunTimeException. When a third Sal
 `calculateTotal()` method is called, without a try catch block, the program executes normally until it reaches that line
 the excepcion is not hangled, As a result, the program ends.
 
-### CONCLUSIONS
+## CONCLUSIONS
 The `IndexOutOfBoundsException` is a standar Java exception and when it's caught it displays an error message when tying
 to access a non existent index in the product list.
 When `EmptySaleException` extends `Exception` it becomes a checked exception so the compiler foces the use of a try/catch
@@ -60,9 +60,105 @@ block or a throws declaration before the program can compile.
 But, when it extends `RuntimeExcepcion` it becomes an unchecked exception. The program compiles and runs normally, but 
 it crashes at runtime when the `calculateTotal()` method is called on an empty sale.
 
+# LEVEL 2 EXCEPTIONS
 
+This Java application provides a utility class to safely read different data types from the console. The goals is to 
+handle invalid user input, prevent the application from terminating unexcpected and practice using standard and 
+personalized exceptions.
 
+## STRUCTURE
+```text
+level02/
+├── Main.java
+├── ConsoleReader.java
+├── OneCharacterException.java
+├── TooLongException.java
+└── YesNoException.java
+```
 
+**ConsoleReader:**
+* `readByte()`
+* `readInt()`
+* `readFloat()`
+* `readDouble()`
+* `readChar()`
+* `readString()`
+* `readYesNo()`
+
+**OneCharacterException:**
+Custom exception thrown when the user enters more than one character.
+
+**TooLongException:**
+Custom exception thrown when the entered text exceeds the maximum allowed length (10).
+
+**YesNoException:**
+Custom exception thrown when the user enters a value other than "y" or "n".
+
+**Main:**
+Calls all methods from ConsoleReader and contains test cases to verify input validation and exception handling.
+
+## TESTING 
+
+The methods `readByte()`, `readInt()`, `readFloat()`, and `readDouble()` use InputMismatchException to validate numeric 
+input. When a value with an incorrect format is entered, an error message is displayed and the user is asked to enter 
+the value again.
+
+Console:
+Enter your age:
+hello
+Format error. Try again.
+Enter your age:
+80
+Your age: 80
+
+The same behavior occurs for all numeric methods.
+
+The `readChar()` method only accepts a single character. If more than one character is entered, a custom exception is thrown.
+
+Console: 
+Enter one character:
+pa1
+Enter a single character. Try again.
+Enter one character:
+*
+Your character: *
+
+The `readString()` method validates the maximum length of the text. If more than 10 characters are entered, 
+a custom exception is thrown.
+
+Console:
+Enter your name:
+Pfkldflkjfdlfdfds
+Maximum 10 characters allowed. Try again.
+Enter your name:
+Maria
+Your name: Maria
+
+Also, the `readYesNo(`) method only accepts y or n. Any other value causes a custom exception to be thrown.
+
+Console:
+Do you like the questions?
+5
+Enter 'y' for yes or 'n' for no. Try again.
+Do you like the questions?
+yes
+Enter 'y' for yes or 'n' for no. Try again.
+Do you like the questions?
+y
+Your answer: true
+
+## CONCLUSIONS
+
+The `InputMismatchException` is used to validate numeric input and prevent the program from terminating when the user 
+enters text or invalid characters instead of numbers.
+Also, custom exceptions are used for validations that are not covered by standard Java exceptions, such as 
+checking that only one character is entered, limiting the length of a string, or accepting only specific values (y or n).
+
+The use of while(true) loops allows the application to repeatedly request input until a valid value is entered, that is 
+why is important that the message is into the loop, that way can improve the user experience and making the program 
+more robust.
+
+Using a single static Scanner object by all methods, reduce code duplication and makes the input methods easy to reuse.
 
 
 
