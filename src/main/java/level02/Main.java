@@ -17,11 +17,10 @@ public class Main {
         char character = ConsoleReader.readChar("Enter one character: ");
         System.out.println("Your character: " + character);
 
-        String name = ConsoleReader.readString("Enter your name: ");
-        System.out.println("Your name: "+ name);
+        String password = ConsoleReader.readString("Enter a password: ");
+        System.out.println("Your password: "+ password);
 
         boolean yesNo = ConsoleReader.readYesNo("Do you like the questions?  ");
         System.out.println("Your answer: " + yesNo);
-
     }
 }

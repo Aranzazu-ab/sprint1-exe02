@@ -1,6 +1,7 @@
 package level01;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Sale {
     private ArrayList<Product> products;
@@ -19,13 +20,12 @@ public class Sale {
         return totalPrice;
     }
 
-    public void calculateTotal() throws EmptySaleException {
+    public void calculateTotal() {
         if (products.isEmpty()){
-            throw new EmptySaleException();
-        } else {
-            for(int i = 0; i< products.size(); ++i){
-                totalPrice= totalPrice + products.get(i).getPrice();
-            }
+            throw new EmptySaleException("can't calculate total price");
+        }
+        for (Product product : products) {
+            totalPrice = totalPrice + product.getPrice();
         }
     }
 }

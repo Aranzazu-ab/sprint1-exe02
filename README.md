@@ -26,6 +26,8 @@ Custom exception thrown when attempting to calculate the total price of an empty
 Creates products, create a sale, add the products to it, and contains test cases to verify the correct calculation and 
 test different exception scenarios.
 It handles `IndexOutBoundsException` and uses `EmptySaleException`.
+The repeated try/catch logic is encapsulated in a private static method totalSale(Sale currentSale), called once 
+for each sale.
 
 ## TESTING
 First a `sale01` object is created and the products are added to the list.
@@ -37,20 +39,19 @@ After adding a try catch block with `IndexOutOfBoundsException`, the code contin
 Output: Error: Index 5 out of bounds for length 4 
 and the program continues running.
 
-Then the total price is calculated. 
-`sale01.calculateTotal()` 
+Then the total price is calculated through the `totalSale(sale01)` method call.
 Output: Total: 8.83 euros.
 
 To test and empty Sale, `sale02` is created without adding any products, and `EmptySaleException` extends `Exception`.
 Without a try catch block the program don't compile.
 Output: java: unreported exception level01.EmptySaleException; must be caught or declared to be thrown.
 
-With the try and catch block the program continue and displays: 
+With the try and catch block inside `totalSale(sale02)`, the program continue and displays: 
 Error: You must first add product to make a sale.
 
 EmptySaleException is then modified to extend RunTimeException. When a third Sale `(sale03)` is created empty, and 
 `calculateTotal()` method is called, without a try catch block, the program executes normally until it reaches that line
-the excepcion is not hangled, As a result, the program ends.
+the excepcion is not hangled, as a result, the program ends.
 
 ## CONCLUSIONS
 The `IndexOutOfBoundsException` is a standar Java exception and when it's caught it displays an error message when tying
@@ -89,7 +90,7 @@ level02/
 Custom exception thrown when the user enters more than one character.
 
 **TooLongException:**
-Custom exception thrown when the entered text exceeds the maximum allowed length (10).
+Custom exception thrown when the entered text exceeds the maximum allowed length.
 
 **YesNoException:**
 Custom exception thrown when the user enters a value other than "y" or "n".
@@ -105,11 +106,11 @@ the value again.
 
 Console:
 Enter your age:
-hello
-Format error. Try again.
+abc
+Format error. Enter a valid number (byte) Try again.
 Enter your age:
-80
-Your age: 80
+52
+Your age: 52
 
 The same behavior occurs for all numeric methods.
 
@@ -117,8 +118,8 @@ The `readChar()` method only accepts a single character. If more than one charac
 
 Console: 
 Enter one character:
-pa1
-Enter a single character. Try again.
+45
+Invalid input. Only one character is accepted.  Try again.
 Enter one character:
 *
 Your character: *
@@ -127,25 +128,22 @@ The `readString()` method validates the maximum length of the text. If more than
 a custom exception is thrown.
 
 Console:
-Enter your name:
-Pfkldflkjfdlfdfds
-Maximum 10 characters allowed. Try again.
-Enter your name:
-Maria
-Your name: Maria
+Enter a password:
+kfjkldfjgrjrejrggtrg
+Format error. Too many characters. Lenght most be 10 characters. Try again.
+Enter a password:
+ahdkfjsie
+Your password: ahdkfjsie
 
 Also, the `readYesNo(`) method only accepts y or n. Any other value causes a custom exception to be thrown.
 
 Console:
-Do you like the questions?
-5
-Enter 'y' for yes or 'n' for no. Try again.
-Do you like the questions?
-yes
-Enter 'y' for yes or 'n' for no. Try again.
-Do you like the questions?
-y
-Your answer: true
+Do you like the questions?  
+maybe
+Invalid input. Only a yes or no is accepted.  Enter 'y' for yes or 'n' for no. Try again.
+Do you like the questions?  
+n
+Your answer: false
 
 ## CONCLUSIONS
 

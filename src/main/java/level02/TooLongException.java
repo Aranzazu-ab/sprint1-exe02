@@ -1,7 +1,7 @@
 package level02;
 
 public class TooLongException extends Exception {
-    public TooLongException () {
-        super ("Maximum 10 characters allowed. Try again.");
+    public TooLongException (String message) {
+        super ("Too many characters."+ message);
     }
 }
