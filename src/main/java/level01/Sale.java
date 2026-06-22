@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sale {
-    private ArrayList<Product> products;
+    private List<Product> products;
     private double totalPrice;
 
     public Sale(){
@@ -12,8 +12,12 @@ public class Sale {
         this.totalPrice = 0;
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
+    public void addProduct (Product p){
+        products.add(p);
+    }
+
+    public List<Product> getProducts() {
+        return List.copyOf(products);
     }
 
     public double getTotalPrice() {
@@ -24,8 +28,10 @@ public class Sale {
         if (products.isEmpty()){
             throw new EmptySaleException("can't calculate total price");
         }
+        double total= 0;
         for (Product product : products) {
-            totalPrice = totalPrice + product.getPrice();
+            total = total + product.getPrice();
         }
+        this.totalPrice=total;
     }
 }
